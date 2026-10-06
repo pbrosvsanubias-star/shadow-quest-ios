@@ -32,6 +32,10 @@ struct CameraRepCounter {
     private var cycleBegan: TimeInterval?
     private var lastCountedTime = -Double.infinity
 
+    init(configuration: Configuration) {
+        self.configuration = configuration
+    }
+
     /// Invalid observations immediately discard an incomplete cycle. Counts survive.
     mutating func loseBody() {
         phase = .setup
@@ -117,3 +121,4 @@ struct CameraRepCounter {
         return false
     }
 }
+
