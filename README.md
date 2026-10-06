@@ -57,4 +57,3 @@ Basis: die bereitgestellte Android-Datei `Shadow-Quest.apk`, Version **1.10.0**,
 ```
 
 Der iOS-Quellcode ersetzt die Android-Brücke durch WKWebView, CoreLocation, Vision und lokale Speicherung. Die fertige IPA entsteht erst nach einem erfolgreichen Cloud-Build und benötigt anschließend die Signierung für dein iPhone.
-

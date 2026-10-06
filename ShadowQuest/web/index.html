@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080b14">
+  <title>Shadow Quest</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="reward-animation.css">
+  <link rel="stylesheet" href="leaderboard.css">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div id="app">
+    <header class="app-header">
+      <div class="brand"><img class="brand-banner" src="images/shadow-profile-banner.png" alt="Shadow Quest – Dein Level. Dein Weg. Anime-Hunter im schwarzen Stachelrahmen." width="2169" height="725" fetchpriority="high"></div>
+      <button id="profile-button" data-go="profile" aria-label="Dein Hunter-Profil öffnen" title="Dein Hunter-Profil"></button>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <nav class="bottom-nav training-nav" aria-label="Hauptnavigation">
+      <div class="nav-artwork">
+        <div class="nav-hitareas">
+          <button data-tab="home" class="nav-item active" aria-current="page"><span class="nav-visual" aria-hidden="true"><img src="images/shadow-navigation-neutral.png" style="--sprite-width:592;--sprite-x:0" alt=""></span><span class="nav-label">System</span></button>
+          <button data-tab="training" class="nav-item"><span class="nav-visual" aria-hidden="true"><img src="images/shadow-navigation-neutral.png" style="--sprite-width:543;--sprite-x:1092" alt=""></span><span class="nav-label">Training</span></button>
+          <button data-tab="history" class="nav-item"><span class="nav-visual" aria-hidden="true"><img src="images/shadow-navigation-neutral.png" style="--sprite-width:537;--sprite-x:1635" alt=""></span><span class="nav-label">Chronik</span></button>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-layer" id="modal-layer" hidden><div class="modal-scrim"></div><section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1"></section></div>
+  <script src="reward-animation.js"></script>
+  <script src="rep-touch.js"></script>
+  <script src="leaderboard.js"></script>
+  <script src="profile.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

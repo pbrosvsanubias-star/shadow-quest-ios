@@ -1,0 +1,42 @@
+name: Build Shadow Quest IPA
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: shadow-quest-ios-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+      - name: Show Apple toolchain
+        run: xcodebuild -version
+      - name: Verify project and JavaScript
+        run: |
+          python3 tools/verify_project.py
+          node tools/test_bridge.cjs
+          for file in ShadowQuest/web/*.js; do node --check "$file"; done
+          plutil -lint ShadowQuest/Info.plist ShadowQuest/PrivacyInfo.xcprivacy ShadowQuest.xcodeproj/project.pbxproj
+      - name: Test storage, rewards and camera cycles
+        run: |
+          swiftc ShadowQuest/QuestStore.swift tools/test_store.swift -o "$RUNNER_TEMP/store-tests"
+          "$RUNNER_TEMP/store-tests"
+          swiftc ShadowQuest/CameraRepCounter.swift tools/CameraRepCounterTests.swift -o "$RUNNER_TEMP/camera-tests"
+          "$RUNNER_TEMP/camera-tests"
+      - name: Build ARM64 iPhone app and package IPA
+        run: bash tools/build-ipa.sh
+      - name: Upload IPA for Windows installation
+        uses: actions/upload-artifact@v4
+        with:
+          name: Shadow-Quest-IPA
+          path: |
+            build/Shadow-Quest-unsigned.ipa
+            build/Shadow-Quest-unsigned.ipa.sha256
+          if-no-files-found: error
+          retention-days: 7
