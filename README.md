@@ -2,7 +2,9 @@
 
 Dieses Projekt enthält die iOS-Portierung von **Shadow Quest 1.10.0, Build 25** für **iOS 16 oder neuer**. GitHub Actions soll daraus auf einem Cloud-Mac eine IPA bauen; anschließend signierst und installierst du sie mit Sideloadly auf deinem Windows-PC.
 
-**Aktueller Stand: Es gibt noch keine fertige IPA.** Die Projektstruktur, Swift-Syntax und JavaScript wurden lokal geprüft. Ein vollständiger Xcode-Build und Tests auf einem echten iPhone stehen noch aus. Der erste GitHub-Lauf kann deshalb noch Fehler zeigen, die anschließend behoben werden müssen.
+**Die unsignierte IPA wurde erfolgreich erstellt.** Am 6. Oktober 2026 hat der [Cloud-Build mit Xcode 16.4](https://github.com/pbrosvsanubias-star/shadow-quest-ios/actions/runs/37447831121) die native iPhone-App gebaut. Projekt-, JavaScript-, Speicher-, Belohnungs- und Kamera-Zählertests sind bestanden; das Paket wurde als ARM64-iPhoneOS-App geprüft. Ein Test auf einem echten iPhone steht noch aus.
+
+Du kannst direkt mit **Abschnitt 3** starten und die mitgelieferte `Shadow-Quest-unsigned.ipa` verwenden. Eine zusätzliche Kopie liegt unter `C:\Users\zweif\Desktop\APK_Game`. Die folgenden Build-Schritte brauchst du, wenn du später eine neue IPA erstellen möchtest.
 
 ## 1. Das vollständige Projekt auf GitHub hochladen
 
@@ -57,3 +59,4 @@ Basis: die bereitgestellte Android-Datei `Shadow-Quest.apk`, Version **1.10.0**,
 ```
 
 Der iOS-Quellcode ersetzt die Android-Brücke durch WKWebView, CoreLocation, Vision und lokale Speicherung. Die fertige IPA entsteht erst nach einem erfolgreichen Cloud-Build und benötigt anschließend die Signierung für dein iPhone.
+
